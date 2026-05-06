@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { AnalysisResultCard } from "./analysis-result-card";
 import { AnalyzingLoadingState } from "./analyzing-loading-state";
 
-export function ResumeUploadForm() {
+export default function ResumeUploadForm() {
   const queryClient = useQueryClient();
   const [resume, setResume] = useState<File | null>(null);
   const [jobDescription, setJobDescription] = useState("");

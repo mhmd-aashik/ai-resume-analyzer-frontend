@@ -1,4 +1,4 @@
-import { ResumeUploadForm } from "@/components/resume/resume-upload-form";
+import ResumeUploadForm from "@/components/resume/resume-upload-form";
 
 export default function AnalyzePage() {
   return (
