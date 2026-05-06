@@ -2,21 +2,21 @@
 
 import { useMemo, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { UploadCloud, Loader2, FileText } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { UploadCloud, Loader2, FileText, BrainCircuit, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { analyzeResumeApi } from "@/lib/api";
 import type { ResumeAnalysis } from "@/types/analysis";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { AnalysisResultCard } from "./analysis-result-card";
 import { AnalyzingLoadingState } from "./analyzing-loading-state";
 
 export default function ResumeUploadForm() {
   const queryClient = useQueryClient();
+  const router = useRouter();
   const [resume, setResume] = useState<File | null>(null);
   const [jobDescription, setJobDescription] = useState("");
-  const [result, setResult] = useState<ResumeAnalysis | null>(null);
 
   const canSubmit = useMemo(() => {
     return resume && jobDescription.trim().length >= 20;
@@ -25,9 +25,13 @@ export default function ResumeUploadForm() {
   const mutation = useMutation({
     mutationFn: analyzeResumeApi,
     onSuccess: async (response) => {
-      setResult(response.data);
-      toast.success("Resume analyzed successfully");
+      toast.success("Resume analyzed successfully!");
       await queryClient.invalidateQueries({ queryKey: ["analyses"] });
+      
+      // Redirect to the detail page after a short delay to let the user process the success
+      setTimeout(() => {
+        router.push(`/analysis/${response.data.id}`);
+      }, 1500);
     },
     onError: (error) => {
       console.error(error);
@@ -54,27 +58,11 @@ export default function ResumeUploadForm() {
     });
   }
 
-  function handleReset() {
-    setResult(null);
-    setResume(null);
-    setJobDescription("");
-  }
-
   return (
     <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
       <Card className="h-fit border-white/10 bg-white/[0.04] text-white transition-all duration-300">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0">
+        <CardHeader>
           <CardTitle>Analyze Resume</CardTitle>
-          {result && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleReset}
-              className="text-zinc-400 hover:text-white"
-            >
-              Reset
-            </Button>
-          )}
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -152,23 +140,38 @@ export default function ResumeUploadForm() {
         </CardContent>
       </Card>
 
-      {/* Result Area */}
+      {/* Result / Idle Area */}
       <div className="transition-all duration-500">
         {mutation.isPending ? (
           <AnalyzingLoadingState />
-        ) : result ? (
-          <AnalysisResultCard analysis={result} />
         ) : (
-          <Card className="flex min-h-[500px] items-center justify-center border-white/10 bg-white/[0.03] text-center text-white">
-            <CardContent>
-              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-white/5">
-                <FileText className="h-10 w-10 text-zinc-500" />
+          <Card className="flex min-h-[500px] flex-col items-center justify-center border-white/10 bg-white/[0.03] text-center text-white overflow-hidden relative">
+            {/* Background Decor */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl" />
+            
+            <CardContent className="relative z-10 flex flex-col items-center">
+              <div className="relative mb-6">
+                <div className="absolute inset-0 animate-pulse rounded-full bg-indigo-500/10 blur-xl" />
+                <div className="relative flex h-24 w-24 items-center justify-center rounded-full border border-white/5 bg-zinc-900/50 text-zinc-600">
+                  <BrainCircuit className="h-12 w-12 animate-[pulse_4s_ease-in-out_infinite]" />
+                </div>
+                <div className="absolute -top-1 -right-1">
+                  <Sparkles className="h-6 w-6 text-indigo-400/30 animate-pulse" />
+                </div>
               </div>
-              <h2 className="text-xl font-semibold">No analysis yet</h2>
-              <p className="mt-2 max-w-md text-sm text-zinc-400">
-                Upload your resume and paste a job description. Your AI-powered
-                match result will appear here automatically.
+              
+              <h2 className="text-xl font-semibold bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
+                Ready for Analysis
+              </h2>
+              <p className="mt-3 max-w-xs text-sm leading-relaxed text-zinc-500">
+                Upload your resume and provide a job description to get AI-powered insights and match scores.
               </p>
+              
+              <div className="mt-8 flex gap-4">
+                <div className="h-1 w-1 rounded-full bg-indigo-500/20" />
+                <div className="h-1 w-1 rounded-full bg-indigo-500/40" />
+                <div className="h-1 w-1 rounded-full bg-indigo-500/20" />
+              </div>
             </CardContent>
           </Card>
         )}

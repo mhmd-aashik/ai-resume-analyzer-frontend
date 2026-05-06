@@ -10,12 +10,9 @@ export function Navbar() {
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-500/20 text-indigo-300">
             <BrainCircuit className="h-5 w-5" />
           </div>
-          <div>
-            <p className="text-sm font-semibold leading-none text-white">
-              AI Resume Analyzer
-            </p>
-            <p className="text-xs text-zinc-400">Day 1 / 30 AI Projects</p>
-          </div>
+          <p className="text-sm font-semibold leading-none text-white">
+            AI Resume Analyzer
+          </p>
         </Link>
 
         <nav className="flex items-center gap-2">
