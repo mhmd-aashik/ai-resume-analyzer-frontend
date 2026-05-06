@@ -104,7 +104,7 @@ export default function ResumeUploadForm() {
                 value={jobDescription}
                 onChange={(e) => setJobDescription(e.target.value)}
                 placeholder="Paste the job description here..."
-                className="min-h-48 border-white/10 bg-zinc-950 text-white placeholder:text-zinc-500 focus-visible:ring-indigo-500"
+                className="h-64 resize-none border-white/10 bg-zinc-950 text-white placeholder:text-zinc-500 focus-visible:ring-indigo-500 overflow-y-auto"
               />
             </div>
 
