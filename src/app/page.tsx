@@ -18,9 +18,6 @@ export default function HomePage() {
 
       <section className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-10 px-4 py-16 lg:grid-cols-2">
         <div>
-          <Badge className="mb-5 border-indigo-400/20 bg-indigo-500/10 text-indigo-200">
-            30 Days AI Project Challenge
-          </Badge>
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
             Analyze resumes with AI and improve job match scores.
           </h1>
