@@ -58,7 +58,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <Card className="border-white/10 bg-white/[0.04] shadow-2xl backdrop-blur-xl">
+        <Card className="border-white/10 bg-white/4 shadow-2xl backdrop-blur-xl">
           <CardContent className="p-6">
             <div className="rounded-2xl border border-white/10 bg-zinc-900/80 p-5">
               <div className="mb-6 flex items-center justify-between">
@@ -89,7 +89,7 @@ export default function HomePage() {
                 ].map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-xl border border-white/10 bg-white/[0.03] p-4"
+                    className="rounded-xl border border-white/10 bg-white/3 p-4"
                   >
                     <div className="mb-2 flex items-center gap-2">
                       <item.icon className="h-4 w-4 text-indigo-300" />
