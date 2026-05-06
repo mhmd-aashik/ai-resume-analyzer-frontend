@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "AI Resume Analyzer",
   description:
-    "AI-powered resume analyzer built with Next.js, NestJS, Drizzle, PostgreSQL, and Ollama.",
+    "AI-powered resume analyzer built with Next.js, NestJS, Drizzle, PostgreSQL, and Gemini.",
 };
 
 export default function RootLayout({

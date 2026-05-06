@@ -44,7 +44,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-2">
-            {["Next.js", "NestJS", "TypeScript", "Ollama", "Drizzle"].map(
+            {["Next.js", "NestJS", "TypeScript", "Gemini", "Drizzle"].map(
               (item) => (
                 <Badge
                   key={item}
