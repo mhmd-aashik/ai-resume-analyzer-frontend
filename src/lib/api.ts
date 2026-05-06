@@ -26,11 +26,11 @@ export async function analyzeResumeApi(params: {
 }
 
 export async function getAnalysesApi() {
-  const response = await api.get<ResumeAnalysis[]>("/analysis");
+  const response = await api.get<ResumeAnalysis[]>("/resume/history");
   return response.data;
 }
 
 export async function getAnalysisByIdApi(id: string) {
-  const response = await api.get<ResumeAnalysis>(`/analysis/${id}`);
+  const response = await api.get<ResumeAnalysis>(`/resume/${id}`);
   return response.data;
 }
