@@ -17,3 +17,7 @@ export type AnalyzeResumeResponse = {
   message: string;
   data: ResumeAnalysis;
 };
+export type PaginatedHistoryResponse = {
+  items: ResumeAnalysis[];
+  total: number;
+};
