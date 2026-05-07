@@ -136,3 +136,24 @@ body {
 ::selection {
   background: rgba(99, 102, 241, 0.35);
 }
+
+@layer utilities {
+  .animate-scan {
+    animation: scan 3s linear infinite;
+  }
+
+  .animate-shine {
+    animation: shine 8s ease-in-out infinite;
+  }
+
+  @keyframes scan {
+    0% { transform: translateY(-100%); opacity: 0; }
+    50% { opacity: 0.5; }
+    100% { transform: translateY(100%); opacity: 0; }
+  }
+
+  @keyframes shine {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.1); }
+  }
+}

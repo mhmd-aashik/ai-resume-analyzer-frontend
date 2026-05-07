@@ -16,7 +16,12 @@ export default function HomePage() {
       {/* Background decoration */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(99,102,241,0.25),transparent_35%),radial-gradient(circle_at_top_right,rgba(14,165,233,0.18),transparent_30%)]" />
 
-      <section className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-10 px-4 py-16 lg:grid-cols-2">
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute -top-[10%] -left-[10%] h-[40%] w-[40%] animate-shine rounded-full bg-indigo-500/10 blur-[120px]" />
+        <div className="absolute top-[20%] -right-[10%] h-[50%] w-[50%] animate-shine rounded-full bg-blue-500/5 blur-[120px] [animation-delay:2s]" />
+      </div>
+
+      <section className="relative z-10 mx-auto grid min-h-[calc(100vh-4rem)] max-w-7xl items-center gap-10 px-4 py-16 lg:grid-cols-2">
         <div>
           <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-white md:text-6xl">
             Analyze resumes with AI and improve job match scores.

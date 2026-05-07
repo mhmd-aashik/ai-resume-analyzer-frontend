@@ -75,7 +75,19 @@ export default function ResumeUploadForm() {
 
   // State: Default (Upload Form)
   return (
-    <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] animate-in fade-in duration-700">
+    <div className="animate-in fade-in duration-700">
+      <div className="mb-8">
+        <p className="text-sm font-medium text-indigo-300">AI Resume Analyzer</p>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight text-white md:text-4xl">
+          Upload resume and analyze job fit
+        </h1>
+        <p className="mt-3 max-w-2xl text-zinc-400">
+          Compare your resume against a job description and get AI-powered
+          feedback in seconds.
+        </p>
+      </div>
+
+      <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
       <Card className="h-fit border-white/10 bg-white/[0.04] text-white">
         <CardHeader>
           <CardTitle>Analyze Resume</CardTitle>
@@ -121,7 +133,9 @@ export default function ResumeUploadForm() {
         <CardContent className="relative z-10 flex flex-col items-center">
           <div className="relative mb-6">
             <div className="absolute inset-0 animate-pulse rounded-full bg-indigo-500/10 blur-xl" />
-            <div className="relative flex h-24 w-24 items-center justify-center rounded-full border border-white/5 bg-zinc-900/50 text-zinc-600">
+            <div className="relative flex h-24 w-24 items-center justify-center rounded-full border border-white/5 bg-zinc-900/50 text-zinc-600 overflow-hidden">
+              {/* Scanning Beam */}
+              <div className="absolute inset-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-400 to-transparent animate-scan z-10" />
               <BrainCircuit className="h-12 w-12 animate-[pulse_4s_ease-in-out_infinite]" />
             </div>
             <div className="absolute -top-1 -right-1"><Sparkles className="h-6 w-6 text-indigo-400/30 animate-pulse" /></div>
@@ -130,6 +144,7 @@ export default function ResumeUploadForm() {
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-zinc-500">Upload your resume and provide a job description to get AI-powered insights.</p>
         </CardContent>
       </Card>
+    </div>
     </div>
   );
 }
